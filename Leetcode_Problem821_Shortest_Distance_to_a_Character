@@ -114,3 +114,24 @@ int* shortestToChar(char * s, char c, int* returnSize){
     free(map);
     return res;
 }
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+int* shortestToChar(char * s, char c, int* returnSize){
+    int k = 0, min , index[strlen(s)] , *shortest = malloc(sizeof(int)*strlen(s));
+    *returnSize = 0;
+    for(int i = 0; i < strlen(s); i++)
+        if(s[i] == c)
+            index[k++] = i;
+    for(int i = 0; i < strlen(s); i++)
+    {
+        min = INT_MAX;
+        for(int j = 0; j < k; j++)
+            if(abs(i - index[j]) < min)
+                min = abs(i - index[j]);
+        shortest[(*returnSize)++] = min;
+    }
+    return shortest;
+}
